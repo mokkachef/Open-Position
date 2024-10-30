@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    android:clickable="true"
+    android:elevation="5dp"
+    android:foreground="?selectableItemBackground"
+    app:cardCornerRadius="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/grey1"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/looking_string"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/looking_number_stub"
+            android:textColor="@color/green"
+            android:textSize="@dimen/title4"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/isFavorite"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="@string/title_favorites"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/heart_icon_empty" />
+
+        <TextView
+            android:id="@+id/title_vacancy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/title_stub"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title3"
+            android:layout_marginRight="45dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintLeft_toLeftOf="@id/looking_string"
+            app:layout_constraintTop_toBottomOf="@id/looking_string" />
+
+        <TextView
+            android:id="@+id/salary_vacancy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/salary_vacancy_stub"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title2"
+            app:layout_constraintLeft_toLeftOf="@id/title_vacancy"
+            app:layout_constraintTop_toBottomOf="@id/title_vacancy" />
+
+        <TextView
+            android:id="@+id/address_town_vacancy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/address_town_stub"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title4"
+            app:layout_constraintLeft_toLeftOf="@id/title_vacancy"
+            app:layout_constraintTop_toBottomOf="@id/salary_vacancy" />
+
+        <TextView
+            android:id="@+id/company_vacancy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/company_vacancy_stub"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title4"
+            app:layout_constraintLeft_toLeftOf="@id/address_town_vacancy"
+            app:layout_constraintTop_toBottomOf="@id/address_town_vacancy" />
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="2dp"
+            android:contentDescription="@string/check_mark"
+            android:padding="2dp"
+            android:src="@drawable/check_mark"
+            app:layout_constraintBottom_toBottomOf="@id/company_vacancy"
+            app:layout_constraintLeft_toRightOf="@id/company_vacancy"
+            app:layout_constraintTop_toTopOf="@id/company_vacancy" />
+
+        <ImageView
+            android:id="@+id/case_icon"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/case_icon"
+            android:paddingLeft="2dp"
+            android:paddingTop="3dp"
+            android:paddingRight="2dp"
+            android:paddingBottom="2dp"
+            android:src="@drawable/case_icon"
+            app:layout_constraintLeft_toLeftOf="@id/company_vacancy"
+            app:layout_constraintTop_toBottomOf="@id/company_vacancy" />
+
+        <TextView
+            android:id="@+id/experience_previewText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="@string/experience_stub"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title4"
+            app:layout_constraintBottom_toBottomOf="@id/case_icon"
+            app:layout_constraintLeft_toRightOf="@id/case_icon"
+            app:layout_constraintTop_toTopOf="@id/case_icon" />
+
+        <TextView
+            android:id="@+id/published_date_vacancy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/published_data_stub"
+            android:textColor="@color/grey3"
+            android:textSize="@dimen/title4"
+            app:layout_constraintLeft_toLeftOf="@id/case_icon"
+            app:layout_constraintTop_toBottomOf="@id/case_icon" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/response_button"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/button1"
+            android:backgroundTint="@color/green"
+            android:gravity="center"
+            android:text="@string/response_stub"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title4"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/published_date_vacancy" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="title1">22sp</dimen>
+    <dimen name="title2">20sp</dimen>
+    <dimen name="title3">16sp</dimen>
+    <dimen name="title4">14sp</dimen>
+    <dimen name="text1">14sp</dimen>
+    <dimen name="button_text1">16sp</dimen>
+    <dimen name="button_text2">14sp</dimen>
+    <dimen name="tab_text">10sp</dimen>
+    <dimen name="number">7sp</dimen>
+</resources>

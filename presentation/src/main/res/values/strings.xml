@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_favorites">Избранное</string>
+    <string name="title_search">Поиск</string>
+    <string name="title_response">Отклики</string>
+    <string name="title_messages">Сообщения</string>
+    <string name="title_profile">Профиль</string>
+    <string name="search_hint">Должность, ключевые слова</string>
+    <string name="looking_number_stub">Сейчас просматривает 1 человек</string>
+    <string name="title_stub">UI/UX Designer</string>
+    <string name="address_town_stub">Минск</string>
+    <string name="salary_vacancy_stub">1500-2900</string>
+    <string name="company_vacancy_stub">Еком дизайн</string>
+    <string name="check_mark">check mark</string>
+    <string name="case_icon">case_icon</string>
+    <string name="experience_stub">Опыт от 1 года до 3 лет</string>
+    <string name="published_data_stub">Опубликовано 16 февраля</string>
+    <string name="response_stub">Откликнуться</string>
+    <string name="properties">properties</string>
+    <string name="offer_text_stub">Поднять резюме в поиске</string>
+    <string name="level_up_resume">level up resume</string>
+    <string name="near_vacancies">near vacancies</string>
+    <string name="temporary_job">temporary job</string>
+    <string name="offer_action_text_stub">Поднять</string>
+    <string name="vacancy_block_text">Вакансии для вас</string>
+    <string name="more_vacancies_stub">Еще столько-то ваканский</string>
+    <string name="id_vacancy_stub">Vacancy id:</string>
+    <string name="favorites_number_vacancy_stub">1 вакансия</string>
+    <plurals name="looking_number_string">
+        <item quantity="one">Сейчас просматривает %1$s человек</item>
+        <item quantity="few">Сейчас просматривает %1$s человека</item>
+        <item quantity="other">Сейчас просматривает %1$s человек</item>
+    </plurals>
+    <plurals name="favorite_number">
+        <item quantity="one">%1$s вакансия</item>
+        <item quantity="few">%1$s вакансии</item>
+        <item quantity="other">%1$s вакансий</item>
+    </plurals>
+</resources>
