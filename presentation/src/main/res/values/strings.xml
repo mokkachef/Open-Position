@@ -26,14 +26,22 @@
     <string name="more_vacancies_stub">Еще столько-то ваканский</string>
     <string name="id_vacancy_stub">Vacancy id:</string>
     <string name="favorites_number_vacancy_stub">1 вакансия</string>
+    <string name="number_vacancies_stub">145 ваканский</string>
+    <string name="sort_type_stub">По соответствию</string>
+    <string name="sort_icon">sort icon</string>
     <plurals name="looking_number_string">
         <item quantity="one">Сейчас просматривает %1$s человек</item>
         <item quantity="few">Сейчас просматривает %1$s человека</item>
         <item quantity="other">Сейчас просматривает %1$s человек</item>
     </plurals>
-    <plurals name="favorite_number">
+    <plurals name="number_vacancies">
         <item quantity="one">%1$s вакансия</item>
         <item quantity="few">%1$s вакансии</item>
         <item quantity="other">%1$s вакансий</item>
+    </plurals>
+    <plurals name="more_vacancies">
+        <item quantity="one">Ещё %1$s вакансия</item>
+        <item quantity="few">Ещё %1$s вакансии</item>
+        <item quantity="other">Ещё %1$s вакансий</item>
     </plurals>
 </resources>

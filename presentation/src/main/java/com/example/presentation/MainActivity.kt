@@ -31,23 +31,29 @@ class MainActivity : AppCompatActivity() {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
         val bottomNavView: BottomNavigationView = binding.bottomNav
         val navController = (binding.navHostFragment.getFragment<NavHostFragment>())
             .findNavController()
         bottomNavView.setupWithNavController(navController)
+
+
+        startLoadOffersAndVacancies()
+        favoriteVacanciesBubble(bottomNavView)
+    }
+
+    private fun startLoadOffersAndVacancies() {
         lifecycleScope.launch(Dispatchers.IO) {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.loadData()
             }
         }
-        favoriteVacanciesBubble()
     }
 
-    private fun favoriteVacanciesBubble() {
+    private fun favoriteVacanciesBubble(bottomNavigationView: BottomNavigationView) {
         lifecycleScope.launch(Dispatchers.IO) {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.getNumberFavoriteVacancies().collect {
-                    val bottomNavigationView = binding.bottomNav
                     val menuItem =
                         binding.bottomNav.findViewById<BottomNavigationItemView>(R.id.navigation_favorites)
                     val badge = bottomNavigationView.getOrCreateBadge(menuItem.id)
@@ -56,7 +62,6 @@ class MainActivity : AppCompatActivity() {
                     badge.number = it
                     badge.isVisible = true
                 }
-
             }
         }
     }

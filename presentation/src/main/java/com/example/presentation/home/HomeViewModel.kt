@@ -9,8 +9,12 @@ import com.example.domain.usecase.GetOffersUseCase
 import com.example.domain.usecase.GetVacanciesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.mapLatest
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -25,6 +29,8 @@ class HomeViewModel @Inject constructor(
     private val listVacancies: MutableStateFlow<List<Vacancy>> = MutableStateFlow(listOf())
     private val listVacanciesFavorites: MutableStateFlow<List<Vacancy>> = MutableStateFlow(listOf())
     private val numberFavoriteVacancies: MutableStateFlow<Int> = MutableStateFlow(0)
+    private val loadMore: MutableStateFlow<Boolean> = MutableStateFlow(true)
+    private val numberOfVacancies: MutableStateFlow<Int> = MutableStateFlow(0)
 
     suspend fun loadData() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -38,8 +44,14 @@ class HomeViewModel @Inject constructor(
                 val listFavorite = list.filter { it.isFavorite }
                 listVacanciesFavorites.value = listFavorite
                 numberFavoriteVacancies.value = listFavorite.size
+                loadMore.value = false
+                numberOfVacancies.value = list.size
             }
         }
+    }
+
+    fun getNumberOfVacancies(): StateFlow<Int> {
+        return numberOfVacancies
     }
 
     fun getNumberFavoriteVacancies(): StateFlow<Int> {
@@ -50,9 +62,16 @@ class HomeViewModel @Inject constructor(
         return listOffers
     }
 
-
+    @OptIn(ExperimentalCoroutinesApi::class)
     fun getVacancies(): StateFlow<List<Vacancy>> {
-        return listVacancies
+        return loadMore.mapLatest {
+            if (it) listVacancies.value
+            else listVacancies.value.take(3)
+        }.stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = listVacancies.value
+        )
     }
 
     suspend fun changeIsFavorite(vacancy: Vacancy) {
@@ -61,6 +80,10 @@ class HomeViewModel @Inject constructor(
 
     fun getFavoriteVacancies(): StateFlow<List<Vacancy>> {
         return listVacanciesFavorites
+    }
+
+    fun moreVacancies(b: Boolean) {
+        loadMore.value = b
     }
 
 }

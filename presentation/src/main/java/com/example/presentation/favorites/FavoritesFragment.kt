@@ -83,7 +83,7 @@ class FavoritesFragment : Fragment() {
 
     private fun viewNumberOfVacancies(size: Int) {
         val numberString = resources.getQuantityString(
-            R.plurals.favorite_number,
+            R.plurals.number_vacancies,
             size,
             size
         )
