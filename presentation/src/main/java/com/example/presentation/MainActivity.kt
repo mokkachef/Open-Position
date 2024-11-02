@@ -37,7 +37,6 @@ class MainActivity : AppCompatActivity() {
             .findNavController()
         bottomNavView.setupWithNavController(navController)
 
-
         startLoadOffersAndVacancies()
         favoriteVacanciesBubble(bottomNavView)
     }
@@ -53,14 +52,14 @@ class MainActivity : AppCompatActivity() {
     private fun favoriteVacanciesBubble(bottomNavigationView: BottomNavigationView) {
         lifecycleScope.launch(Dispatchers.IO) {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.getNumberFavoriteVacancies().collect {
+                viewModel.getNumberFavoriteVacancies().collect { numberFavorites ->
                     val menuItem =
                         binding.bottomNav.findViewById<BottomNavigationItemView>(R.id.navigation_favorites)
                     val badge = bottomNavigationView.getOrCreateBadge(menuItem.id)
                     badge.backgroundColor = Color.RED
                     badge.verticalOffset = 15
-                    badge.number = it
-                    badge.isVisible = true
+                    badge.number = numberFavorites
+                    badge.isVisible = numberFavorites != 0
                 }
             }
         }

@@ -15,6 +15,7 @@ import com.example.presentation.databinding.FragmentFavoritesBinding
 import com.example.presentation.home.HomeViewModel
 import com.example.presentation.home.VacancyAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -42,7 +43,7 @@ class FavoritesFragment : Fragment() {
     private fun loadFavoriteVacancies() {
         binding.rvFavorites.adapter = VacancyAdapter(
             onFavoriteClicked = {
-                viewLifecycleOwner.lifecycleScope.launch {
+                viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
                     viewModel.changeIsFavorite(vacancy = it)
                 }
             },

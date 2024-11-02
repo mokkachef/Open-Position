@@ -10,11 +10,11 @@ import com.example.domain.usecase.GetVacanciesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.mapLatest
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -29,7 +29,7 @@ class HomeViewModel @Inject constructor(
     private val listVacancies: MutableStateFlow<List<Vacancy>> = MutableStateFlow(listOf())
     private val listVacanciesFavorites: MutableStateFlow<List<Vacancy>> = MutableStateFlow(listOf())
     private val numberFavoriteVacancies: MutableStateFlow<Int> = MutableStateFlow(0)
-    private val loadMore: MutableStateFlow<Boolean> = MutableStateFlow(true)
+    private val loadMore: MutableStateFlow<Boolean> = MutableStateFlow(false)
     private val numberOfVacancies: MutableStateFlow<Int> = MutableStateFlow(0)
 
     suspend fun loadData() {
@@ -44,7 +44,6 @@ class HomeViewModel @Inject constructor(
                 val listFavorite = list.filter { it.isFavorite }
                 listVacanciesFavorites.value = listFavorite
                 numberFavoriteVacancies.value = listFavorite.size
-                loadMore.value = false
                 numberOfVacancies.value = list.size
             }
         }
@@ -63,15 +62,16 @@ class HomeViewModel @Inject constructor(
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    fun getVacancies(): StateFlow<List<Vacancy>> {
-        return loadMore.mapLatest {
-            if (it) listVacancies.value
-            else listVacancies.value.take(3)
-        }.stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5000),
-            initialValue = listVacancies.value
-        )
+    fun getVacancies(): Flow<List<Vacancy>> {
+        return loadMore.flatMapLatest { loadMoreValue ->
+            listVacancies.map { vacancies ->
+                if (loadMoreValue) {
+                    vacancies
+                } else {
+                    vacancies.take(3)
+                }
+            }
+        }
     }
 
     suspend fun changeIsFavorite(vacancy: Vacancy) {

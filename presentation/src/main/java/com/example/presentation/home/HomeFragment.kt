@@ -15,7 +15,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.presentation.R
 import com.example.presentation.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.components.ViewWithFragmentComponent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -36,6 +35,8 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel.moreVacancies(false)
         loadOffers()
         loadVacancies()
         loadMoreVacancies()
