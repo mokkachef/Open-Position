@@ -4,7 +4,7 @@ import retrofit2.http.GET
 
 interface VacancyOfferApiService {
 
-    @GET("raw/FgCjNE8D")
+    @GET("raw/XqNDBniL")
     suspend fun getVacanciesAndOffersFromSource() : NetworkResult<List<ApiResponse>>
 
 }

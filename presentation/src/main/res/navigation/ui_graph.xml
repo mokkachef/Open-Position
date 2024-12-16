@@ -47,5 +47,20 @@
             android:name="vacancyId"
             app:argType="string" />
     </fragment>
+    <action
+        android:id="@+id/action_global_navigation_response"
+        app:destination="@id/navigation_response" />
+    <action
+        android:id="@+id/action_global_navigation_profile"
+        app:destination="@id/navigation_profile" />
+    <action
+        android:id="@+id/action_global_navigation_messages"
+        app:destination="@id/navigation_messages" />
+    <action
+        android:id="@+id/action_global_navigation_favorites"
+        app:destination="@id/navigation_favorites" />
+    <action
+        android:id="@+id/action_global_navigation_home"
+        app:destination="@id/navigation_home" />
 
 </navigation>

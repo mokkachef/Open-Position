@@ -70,7 +70,8 @@ class HomeFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.getNumberOfVacancies().collect {
-                    val number = it - 3
+                    val number =  if (it >=  3 ) it - 3
+                    else 0
                     binding.moreVacanciesButton.text = resources.getQuantityString(
                         R.plurals.more_vacancies,
                         number,
@@ -120,6 +121,7 @@ class HomeFragment : Fragment() {
         binding.rvVacancies.adapter = VacancyAdapter(
             onFavoriteClicked = {
                 viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+                    println("darova")
                     viewModel.changeIsFavorite(vacancy = it)
                 }
             },

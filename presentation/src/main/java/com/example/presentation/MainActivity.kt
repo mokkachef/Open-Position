@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -39,6 +40,7 @@ class MainActivity : AppCompatActivity() {
 
         startLoadOffersAndVacancies()
         favoriteVacanciesBubble(bottomNavView)
+        bottomMenuNavigate(navController, bottomNavView)
     }
 
     private fun startLoadOffersAndVacancies() {
@@ -54,12 +56,51 @@ class MainActivity : AppCompatActivity() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.getNumberFavoriteVacancies().collect { numberFavorites ->
                     val menuItem =
-                        binding.bottomNav.findViewById<BottomNavigationItemView>(R.id.navigation_favorites)
+                        binding.bottomNav.findViewById<BottomNavigationItemView>(R.id.navigation_favorites_item)
                     val badge = bottomNavigationView.getOrCreateBadge(menuItem.id)
                     badge.backgroundColor = Color.RED
                     badge.verticalOffset = 15
                     badge.number = numberFavorites
                     badge.isVisible = numberFavorites != 0
+                }
+            }
+        }
+    }
+
+    private fun bottomMenuNavigate(
+        navController: NavController,
+        bottomNavView: BottomNavigationView
+    ) {
+        bottomNavView.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.navigation_home_item -> {
+                    navController.navigate(R.id.action_global_navigation_home)
+                    true
+                }
+
+                R.id.navigation_favorites_item -> {
+                    navController.navigate(R.id.action_global_navigation_favorites)
+                    true
+                }
+
+                R.id.navigation_response_item -> {
+                    navController.navigate(R.id.action_global_navigation_response)
+                    true
+                }
+
+                R.id.navigation_messages_item -> {
+                    navController.navigate(R.id.action_global_navigation_messages)
+                    true
+                }
+
+                R.id.navigation_profile_item -> {
+                    navController.navigate(R.id.action_global_navigation_profile)
+                    true
+                }
+
+                else -> {
+                    navController.navigate(R.id.action_global_navigation_home)
+                    true
                 }
             }
         }
